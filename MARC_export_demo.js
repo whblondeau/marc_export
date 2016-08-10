@@ -5753,18 +5753,24 @@ document.writeln('\nMARC export of example content\n');
 
 marc_albums = [];
 
-for (var thang in albums_json[0]) {
-
-    document.writeln('thang.keys(): ' + thang.keys())
-
-    // for (var album in thang) {
-
-    //     // we need WINDOWS line breaks here.
-    //     marc_albums.push(render_marc_from_json(albums_json[thang][album]).join('\r\n') + '\r\n');
-    // }
+for (var top_item in albums_json) {
+    var current_bundle = albums_json[top_item];
+    if (current_bundle) {
+        if (current_bundle.hasOwnProperty('album')) {
+            var current_album = current_bundle['album'];
+            document.writeln('current_album: ' + current_album); 
+            marc_albums.push(render_marc_from_json(current_album).join('\r\n') + '\r\n'); 
+        }      
+    }
 }
 
-document.writeln(marc_albums.length + ' albums written.');
+document.writeln('\n\n' + marc_albums.length + ' albums written.');
+document.writeln('\n');
+for (var indx in marc_albums) {
+    // document.writeln('\n-------------------');
+    document.writeln(marc_albums[indx]);
+    // document.writeln('-------------------\n');
+}
 
 
 

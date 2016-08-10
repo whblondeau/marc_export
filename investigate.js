@@ -105,7 +105,8 @@ var albums_json =
                     "access_token": "16a1a94f5376c3651e41311cc2cfcc332d59d3c0"
                 }
             ]
-        }
+        },
+        "owner": "eec0aec0e40dda7ed05490c72233b160ea64097e"
     },
     {
         "album": {
@@ -218,7 +219,8 @@ var albums_json =
                     "access_token": "d8adba6f6d0ffa92400ab639202ca8defb28d0c5"
                 }
             ]
-        }
+        },
+        "owner": "eec0aec0e40dda7ed05490c72233b160ea64097e"
     }
 ];
 
@@ -227,13 +229,15 @@ document.writeln('\nMARC export of example content\n');
 
 marc_albums = [];
 
-for (var doodad in albums_json) {
+document.writeln('\n' + albums_json.length + ' items in albums_json\n')
 
-    // we need WINDOWS line breaks here.
-    // doodad is the fucking array?
-    for (var prop in albums_json[doodad]) {
-        document.writeln('----' + prop + ': ' + albums_json[doodad][prop]);
+for (var top_item in albums_json) {
+    document.writeln(top_item + ': ' + albums_json[top_item]);
+    var current_album = albums_json[top_item]["album"];
+    document.writeln('  ' + "album" + ': ' + current_album);
+    for (prop in current_album) {
+        document.writeln('    ' + prop + ': ' + current_album[prop]);
     }
 }
 
-document.writeln(marc_albums.length + ' albums written.');
+document.writeln('\n\n' + marc_albums.length + ' albums written.');
